@@ -12,7 +12,7 @@ const firmSchema=new mongoose.Schema({
     category:{
         type:[
             {
-                type:String,
+                type:[String],
                 enum:["veg","non-veg"]
             }
         ]
@@ -20,7 +20,7 @@ const firmSchema=new mongoose.Schema({
     region:{
         type:[
             {
-                type:String,
+                type:[String],
                 enum:["south-Indian","north-Indian","chineese","bakery"]
             }
         ]

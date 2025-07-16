@@ -8,6 +8,7 @@ const mongoose=require("mongoose");
 const vendorRoute=require("./routes/vendorRoute");
 const firmRoute=require("./routes/firmRoute");
 const productRoute=require("./routes/productRoute");
+const cors=require('cors');
 
 const bodyParser=require("body-parser");
 const path=require("path");
@@ -15,6 +16,7 @@ const path=require("path");
 
 
 const app=express();
+app.use(cors());
 const PORT= process.env.PORT || 4000;
 const DotEnv=require("dotenv");
 DotEnv.config();
