@@ -2,6 +2,7 @@
 const productController=require("../controllers/productController");
  const express = require("express");
 const router = express.Router();
+const path=require("path");
 
 
  router.post('/add-product/:firmId',productController.addProduct);
@@ -10,7 +11,7 @@ const router = express.Router();
 
  router.get('/uploads/:imageName',(req,res)=>{
     const imageName=req.params.imageName;
-    req.headersSent('Content-Type','image/jpeg');
+    req.setHeader('Content-Type','image/jpeg');
     res.sendFile(path.join(__dirname,'..','uploads',imageName));
 });
 

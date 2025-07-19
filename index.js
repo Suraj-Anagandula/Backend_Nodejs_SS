@@ -28,7 +28,8 @@ app.use(bodyParser.json());
 app.use("/vendor",vendorRoute);
 app.use("/firm",firmRoute);
 app.use("/product",productRoute);
-app.use("/uploads",express.static('uploads'));
+//app.use("/uploads",express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(PORT,()=>{
     console.log(`Server is started and running at ${PORT}`);

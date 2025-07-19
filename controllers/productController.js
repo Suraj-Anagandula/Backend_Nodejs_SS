@@ -44,6 +44,9 @@ const storage=multer.diskStorage({
     
     try {
          const firmId=req.params.firmId;
+
+         
+
         const firmbyId=await Firm.findById(firmId);
         if(!firmbyId){
             return res.status(404).json({error:"Firm not found"});
@@ -75,6 +78,8 @@ const storage=multer.diskStorage({
         if(!deletedProduct){
             return res.status(404).json({error:"Product not Found"});
         }
+
+        res.status(200).json({ message: "Product deleted successfully", deletedProduct });
         
     } catch (error) {
         console.error(error);

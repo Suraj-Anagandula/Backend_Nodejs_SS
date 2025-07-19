@@ -42,8 +42,10 @@ const vendorLogin=async (req,res)=>{
         }
         const token=jwt.sign({vendorId:vendor._id},secretkey,{expiresIn: "1h"});
 
-        res.status(200).json({sucess:"Login sucessful",token});
-        console.log(email,"this is token:",token);
+ 
+
+        res.status(200).json({success:"Login sucessful",token,vendorId:vendor._id});
+      //  console.log(email,"this is token:",token,"vendorId:",vendorId:vendor._id);
         
         
     } catch (error) {
@@ -80,7 +82,26 @@ const getVendorById=async(req,res)=>{
         if(!vendorById){
             return res.status(404).json({error:"vendor not Found"});
         }
-        res.status(200).json(vendorById);
+         
+
+           let vendorFirmId = null;
+           let vendorFirmName=null;
+
+        // ✅ Check if `firm` is an array
+        if (Array.isArray(vendorById.firm) && vendorById.firm.length > 0) {
+            vendorFirmId = vendorById.firm[0]._id;
+            vendorFirmName=vendorById.firm[0].firstName;
+        }
+        // ✅ If `firm` is a single object
+        else if (vendorById.firm && vendorById.firm._id) {
+            vendorFirmId = vendorById.firm._id;
+            //vendorFirmName=vendorById.firm[0].firstName;
+            vendorFirmName = vendorById.firm.firstName;
+        }
+
+
+        res.status(200).json({vendorId,vendorFirmId,vendorFirmName});
+        console.log(vendorFirmId);
     } catch (error) {
         console.error(error);
            res.status(500).json({error:"Internal server error"});    
